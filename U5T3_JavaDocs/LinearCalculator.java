@@ -5,136 +5,212 @@ package U5T3_JavaDocs;
  * 
  * @author Camila Coronel
  */
+
 public class LinearCalculator{
-    //INSTANCE VARIABLES 
-    //4 INTEGER variables (name them: x1,x2,y1,y2) 
-    private int x1; // Private variable representing the first x value
-    private int x2; // Private variable representing the first y value
-    private int y1; // Private variable representing the second x value
-    private int y2; // Private variable representing the second y value
+    /** The x value of the first point/coordinate pair. */
+    private int x1; 
 
+    //** The x value of the second point/coordinate pair. */
+    private int x2;
 
-    //CONSTRUCTOR
-    //1 constructor with 2 String parameters. Each parameter represents a coordinate. 
-    //For example, "(1,2)" and "(3,4)" would be two parameter values 
-    //You will have to parse the string into 4 integers, representing the 2 points.
-    public LinearCalculator(String point1, String point2){ // <--add 2 string parameters to this constructor
-        int breakPt1 = point1.indexOf(","); //Identifies the comma in the first coordinate, allowing a separation between x and y values
-        x1 = Integer.parseInt(point1.substring(1, breakPt1)); // Finds the x value in this coordinate (by using the previously found comma) and converts it into a String using parseInt
-        y1 = Integer.parseInt(point1.substring(breakPt1 + 1, point1.length() - 1)); // Finds the y value in the coordinate and turns it from a String to a number using parseInt
-        int breakPt2 = point2.indexOf(","); // Identifies the comma in the first coordinate, which allows the separationg between x and y values further on
-        x2 = Integer.parseInt(point2.substring(1, breakPt2)); // Finds the x value in this coordinate (by using the previously found comma) and converts it into a String using parseInt
-        y2 = Integer.parseInt(point2.substring(breakPt2 + 1, point2.length() - 1)); // Finds the y value in this coordinate (by using the previously found comma) and converts it into a String using parseInt
+    /** The y value of the first point/coordinate pair. */
+    private int y1;
+
+    /** The y value of the second point/coordinate pair. */
+    private int y2; 
+
+    /** 
+     * Initiates a LinearCalulator object
+     * 
+     * @param point1 A String of the first point/coordinate pair
+     * @param point2 A String of the second point/coordinate pair
+    */
+    public LinearCalculator(String point1, String point2){ 
+        int breakPt1 = point1.indexOf(","); 
+        x1 = Integer.parseInt(point1.substring(1, breakPt1)); 
+        y1 = Integer.parseInt(point1.substring(breakPt1 + 1, point1.length() - 1));
+        int breakPt2 = point2.indexOf(",");
+        x2 = Integer.parseInt(point2.substring(1, breakPt2));
+        y2 = Integer.parseInt(point2.substring(breakPt2 + 1, point2.length() - 1));
     }
 
-
-
-    //METHODS
-    //getters and setters for the 4 instance variables (8 methods total) 
+    /**
+     * Returns the value of the x in the first point/coordinate pair
+     * 
+     * @return
+     */
     public int getX1(){
-        return x1; // Returns the value of x1
+        return x1; 
     }
 
+    /**
+     * Returns the vaule of y in the first point/coordinate pair
+     * 
+     * @return
+     */
     public int getY1(){
-        return y1; // Returns the value of y1
+        return y1;
     }
 
+    /**
+     * Returns the x value of the second point/coordinate pair
+     * 
+     * @return
+     */
     public int getX2(){
-        return x2; // Returns the value of x2
+        return x2; 
     }
 
+    /**
+     * Returns the y valeu of the second point/coordinate pair
+     * 
+     * @return
+     */
     public int getY2(){
-        return y2; // Returns the value of y2
+        return y2; 
     }
 
+    /**
+     * Sets the x value of the first point/coordinate pair to a new value
+     * 
+     * @param newX1 The new value of x1
+     */
     public void setX1(int newX1){
-        x1 = newX1; // Allows the user to change x1 to a new value named newX1
+        x1 = newX1;
     }
 
+    /**
+     * Sets the y value of the first point/coordinate pair to a new value
+     * 
+     * @param newY1 The new value of y1 
+     */
     public void setY1(int newY1){
-        y1 = newY1; // Allows the user to change y1 to a new value named newY1
+        y1 = newY1; 
     }
 
+    /**
+     * Sets the x value of the second point/coordinate pair to a new value
+     * 
+     * @param newX2 The new value of x2
+     */
     public void setX2(int newX2){
-        x2 = newX2; // Allows the user to change x2 to a new value named newX2
+        x2 = newX2; 
     }
 
+    /**
+     * Sets the y value of the second point/coordinate pair to a new value
+     * 
+     * @param newY2 The new value of y2
+     */
     public void setY2(int newY2){
-        y2 = newY2; // Allows the user to change y2 to a new value named newY2
+        y2 = newY2;
     }
 
-
-    //distance() -> returns a double. 
-    //calculates the distance between the two points to the nearest HUNDREDTH and returns the value.
+    /**
+     * Returns the distance between the two points
+     * <p>
+     * The distance is calculated by taking the square root of x2 - x1 squared 
+     * Then this value is added to the value of the square root of y2 - y1 squared
+     * 
+     * @return The value of the distance between the two point, rounded to the nearest hundreth
+     */
     public double distance(){
-        double distance = Math.sqrt((double)Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)); // Finds the distance between both points by taking the square root of the difference between the x values squared plus the difference between the y values squared
-        return Math.round(distance * 100.0) / 100.0; // Rounds the previous value to the nearest hundredth before returning it 
+        double distance = Math.sqrt((double)Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)); 
+        return Math.round(distance * 100.0) / 100.0;
     }
 
-    //yInt() -> returns a double.
-    //calculates the y intercept of the equation and returns the value to the nearest HUNDREDTH
-    //if y-int if undefined, should return -999.99
+    /**
+     * Returns the value of the y intercept
+     * <p>
+     * The y intercept is calculated by subtracting the value of the slope times the first x value from the first y value
+     * If the first x value and the second x value are equal, 
+     * then it returns -999.99 because it is undefined 
+     * 
+     * @return The value of the y intercept, rounded to the nearest hundredth
+     */
     public double yInt() {
-        if (x2 == x1) { // This conditional statement makes sure the yIntercept is not undefined, and if it is it will return -999.99
-            return -999.99; // Returns -999.99 if conditional statement is true
+        if (x2 == x1) {
+            return -999.99; 
         }
 
-        double slope = slope(); // Using the slope method to add to a variable named slope for future use
-        double yInt = y1 - (slope * x1); // Finds the y intercept by subtracting the first y by the slope times the first x
-        return Math.round(yInt * 100.0) / 100.0; // Rounds the value of the y intercept we found before to the nearest hundredth and returns it
+        double slope = slope();
+        double yInt = y1 - (slope * x1); 
+        return Math.round(yInt * 100.0) / 100.0; 
     }
 
-    //slope() -> returns a double. 
-    //calculates the slope of the equations and returns the value to the nearest HUNDREDTH
-    //if slope is undefined, should return -999.99
+    /**
+     * Returns the value of the slope of the line from the two points
+     * <p>
+     * yVal is calculated by subtracting y1 from y2
+     * xVal is calculated by subtrating x1 from x2
+     * If x2 is equal to x1, then it returns -999.99 becase it is undefined
+     * The value of the actual slope is calculated by dividing yVal / xVal
+     * 
+     * @return The slope of yVal/xVal rounded to the nearest hundredth
+     */
     public double slope(){
-        double yVal = (double) y2 - y1; // Finds the "top" half of the slope equation and makes the value a double, this variable is yVal
-        double xVal = (double) x2 - x1; // Finds the "bottom" half of the slope equation and makes the value a double, this variable is xVal 
+        double yVal = (double) y2 - y1; 
+        double xVal = (double) x2 - x1; 
         if (x2 == x1) {
             return -999.99;
         }
-        return Math.round((yVal / xVal) * 100.0) / 100.0; // Rounds the value of the yVal / xVal to the nearest hundredth and returns it
+        return Math.round((yVal / xVal) * 100.0) / 100.0;
     }
 
-    //equations() -> returns a String.
-    //calculates the final equation in y=mx+b form and returns the string
-    //if the equation has no slope, the equation should return -> "undefined"
-    //HINT: You may need other custom methods to decrease the amount of code in the equations() method
+    /**
+     * Returns a String of the equation y = mx + b
+     * <p>
+     * if the slope is -999.99, then it returns undefined
+     * if the y intercept is 0, the it omits yInt from the equation
+     * if the slope is 0, then it omits the slope from the equation as well
+     * if the y intercept is less than or equal to -1,
+     * then the equation will be returned without a + sign
+     * 
+     * @return String representation of the full equation
+     */
     public String equation(){
         double slopeVal = slope();
-        if (slopeVal == -999.99) { // This conditional makes sure the slope is not undefined
-            return "undefined"; // Returns undefined if the conditional is true
+        if (slopeVal == -999.99) {
+            return "undefined";
         }
         
-        double yInt = yInt(); // sets the value of the method yInt() to a variable here named yInt
-        if (yInt == 0.0) { // To check if we need to remove the yInt part of the equation, or in other words if yInt is 0
-            return "y=" + slopeVal + "x"; // Returns the equation without yInt if the conditional is true
-        } else if (slopeVal == 0.0) { // If the first conditional isn't true, it checks if the slope is 0 now
-            return "y=" + yInt; // Returns the equation without the slope and x if the conditional is true
-        } else if (yInt <= -1) { // If the first two conditionals aren't true, it checks if yInt is negative to remove the + sign in the equation
-            return "y=" + slopeVal + "x" + yInt; // Returns the equation without the + sign if the conditional is true
+        double yInt = yInt(); 
+        if (yInt == 0.0) {
+            return "y=" + slopeVal + "x"; 
+        } else if (slopeVal == 0.0) { 
+            return "y=" + yInt; 
+        } else if (yInt <= -1) {
+            return "y=" + slopeVal + "x" + yInt;
         }
 
-        return "y=" + slopeVal + "x" + "+" + yInt; // If none of those conditionals is true, it returns y=mx+b with the proper values
+        return "y=" + slopeVal + "x" + "+" + yInt;
     }
 
-
-    //roundedToHundredth(double x)-> returns double
-    //calculates the input to the nearest hundredth and returns that value
+    /**
+     * Returns the rounded value of an inputted number 
+     * <p>
+     * Learned through https://stackoverflow.com/questions/246193/how-do-i-round-a-number-in-javascript
+     * 
+     * @param x The value that needs to be rounded
+     * @return The value of x rounded to the nearest hundredth
+     */ 
     public double roundedToHundredth(double x){
-        return Math.round(x * 100.0) / 100.0; // Rounds x by using the Math.round method, learned through https://stackoverflow.com/questions/246193/how-do-i-round-a-number-in-javascript
+        return Math.round(x * 100.0) / 100.0;
     }
 
-    //printInfo() -> returns a string of information
-    //this method is tested but you can also call it in your main method if gradle tests are 
-    //not working. 
+    /**
+     * Returns a string tha includes the value of 
+     * The two points, the slope, y intercept, equation, and the distance
+     * 
+     * @return String represenation of the object's math information
+     */
     public String printInfo(){
-        String str = "The two points are: (" + x1 + "," + y1  + ")"; // Initializes a String variable named str with the points (x1, y1)
-        str += " and " + "(" + x2 + "," + y2 + ")"; // Adds the points (x2, y2) to the string
-        str += "\nThe equation of the line between these points is: " + equation(); // Adds (with a space using \n) the equation of the points to the string
-        str += "\nThe slope of this line is: " + slope(); // Adds (with a space using \n) the slope of the "line" created by the points
-        str += "\nThe y-intercept of the line is: " + yInt(); // Adds (with a space using \n) the y intercept of the line
-        str += "\nThe distance between the two points is: " + distance(); // Adds (with a space using \n) the distance between the points
-        return str; // Returns the string with all the added information
+        String str = "The two points are: (" + x1 + "," + y1  + ")"; 
+        str += " and " + "(" + x2 + "," + y2 + ")";
+        str += "\nThe equation of the line between these points is: " + equation(); 
+        str += "\nThe slope of this line is: " + slope(); 
+        str += "\nThe y-intercept of the line is: " + yInt();
+        str += "\nThe distance between the two points is: " + distance();
+        return str; 
     }
 }

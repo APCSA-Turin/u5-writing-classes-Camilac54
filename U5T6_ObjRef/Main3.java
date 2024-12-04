@@ -1,4 +1,4 @@
-public class Main {
+public class Main3 {
     public static void main(String[] args) {
         System.out.println("------ Scenario Step 1 ------");
         System.out.println("-----> There's a new bank in town!");
@@ -96,17 +96,5 @@ public class Main {
         } else {
             System.out.println("They have the same balance\n");
         }
-        
-        
-
-        
-
-        
-
-
-
-
-
-
     }
 }
