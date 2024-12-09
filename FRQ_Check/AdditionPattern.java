@@ -1,12 +1,12 @@
 // type up the complete AdditionPattern class here.
 
 public class AdditionPattern{
-    private int val1;
+    //private int val1; I'm  ired of seeing an error here, so I commented it out
     private int increase;
     private int currentNum;
 
     public AdditionPattern (int val1, int increase){
-       this.val1 = val1;
+       //this.val1 = val1;
        this.increase = increase;
        currentNum = val1;
     }
@@ -25,6 +25,3 @@ public class AdditionPattern{
         }   
     }
 }
-
-
-
